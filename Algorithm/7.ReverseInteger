@@ -1,0 +1,26 @@
+
+
+
+
+
+
+class Solution:
+    def reverse(self, x):
+        """
+        :type x: int
+        :rtype: int
+        """
+
+        sign=-1 if x<0 else 1
+        x_abs=abs(x)
+        if x_abs>2**31-1:
+            return 0
+        else:
+            result=0
+            while x_abs!=0:
+                result=result*10+x_abs%10
+                x_abs=x_abs//10
+            if result>2**31-1:
+                return 0
+            else:
+                return result*sign
