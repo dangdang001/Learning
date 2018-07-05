@@ -1,0 +1,22 @@
+
+
+
+
+
+class Solution:
+
+# Solution 1: Normal approach
+
+# Solution 2: Use list's stack property pop and append
+    def flipAndInvertImage(self, A):
+        """
+        :type A: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        A_flip=[]
+        for row in A:
+            row_flip=[]
+            while row:
+                row_flip.append((int(row.pop())+1) % 2)
+            A_flip.append(row_flip)
+        return A_flip
