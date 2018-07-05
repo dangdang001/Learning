@@ -1,0 +1,25 @@
+
+
+
+
+
+
+class Solution:
+    def uniqueMorseRepresentations(self, words):
+        """
+        :type words: List[str]
+        :rtype: int
+        """
+        code_book=[".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...",
+                   "-","..-","...-",".--","-..-","-.--","--.."]
+        letters=["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+        dictionary = dict(zip(letters, code_book))
+        pool=[]
+        for item in words:
+            item=str(item)
+            cat=""
+            for i in item:                
+                cat=cat+dictionary[i]
+            pool.append(cat)
+        return len(set(pool))
+            
