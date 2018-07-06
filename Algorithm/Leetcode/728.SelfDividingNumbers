@@ -1,0 +1,19 @@
+class Solution:
+    def selfDividingNumbers(self, left, right):
+        """
+        :type left: int
+        :type right: int
+        :rtype: List[int]
+        """
+        def selfdividing(n):
+            for digit in str(n):
+                if digit=='0' or item % int(digit)!=0:
+                    return False
+            return True
+                    
+        result=[]        
+        for item in range(left,right+1):
+            if selfdividing(item):
+                result.append(item)
+        return result
+    
