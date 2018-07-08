@@ -1,0 +1,32 @@
+
+
+
+
+class Solution:
+
+
+# Method 1: Brute force:
+
+    def longestPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        max_string=s[0]
+        max_len=1
+        for i in range(len(s)-1):
+            for j in range(i+1,len(s)):
+                temp=s[i:(j+1)]
+                k=0
+                while k < len(temp)//2:
+                    if temp[k]!=temp[len(temp)-k-1]:
+                        break
+                    else:
+                        k+=1
+                if k==len(temp)//2:
+                    if len(temp)>max_len:
+                        max_string=temp
+                        max_len=len(temp)
+        return max_string
+                
+          
