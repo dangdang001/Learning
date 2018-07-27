@@ -1,0 +1,22 @@
+class Solution:
+    def longestCommonPrefix(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: str
+        """
+        if not strs:
+            return ""
+        else:   
+            template=min(strs, key=len)
+            for word in strs:
+                i=0
+                while(i<min(len(word),len(template))):
+                    if word[i]==template[i]:
+                        i+=1
+                    else:
+                        if template=="":
+                            return ""
+                        else:
+                            template=template[:i]
+            return template
+            14. Longest Common Prefix
