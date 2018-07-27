@@ -1,0 +1,34 @@
+class Solution:
+    # Solution 1: Brute force, Time: O(n^2), Space: O(1)
+    class Solution:
+    def maxArea(self, height):
+        """
+        :type height: List[int]
+        :rtype: int
+        """
+        max_volumn=0
+        for i in range(len(height)-1):
+            for j in range(i+1,len(height)):
+                temp_volumn=min(height[i],height[j])*(j-i)
+                if temp_volumn>max_volumn:
+                    max_volumn=temp_volumn
+        return max_volumn
+        
+   # Solution 2: Two pointer, Time: O(n), Space: O(1)
+    def maxArea(self, height):
+        """
+        :type height: List[int]
+        :rtype: int
+        """
+        max_vol=0
+        p,q=0,len(height)-1
+        while(p<q):
+            if min(height[p],height[q])*(q-p)>max_vol:
+                max_vol=min(height[p],height[q])*(q-p)
+            if height[p]<=height[q]:
+                p+=1
+            else:
+                q-=1
+        return max_vol
+                    
+        
