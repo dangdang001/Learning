@@ -1,0 +1,31 @@
+class Solution:
+# Solution 1: Time: O(n), Space: O(n)
+    def majorityElement(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        dict={}
+        for item in nums:
+            if item in dict:
+                dict[item]+=1
+            else:
+                dict[item]=1
+        max_temp=0
+        k=nums[0]
+        for key,value in dict.items():
+            if value>max_temp:
+                max_temp=value
+                k=key
+        return k 
+
+# Solution 2: Sort first. Time: O(nlogn), Space: O(n)
+class Solution:
+    def majorityElement(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        nums_sort=sorted(nums)
+        return nums_sort[len(nums)//2]
+            
