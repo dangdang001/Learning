@@ -72,3 +72,15 @@ class Solution(object):
                 tmp[k - num] += v
             count = tmp
         return count[S]
+        
+        
+# Note:        
+defaultdict means that if a key is not found in the dictionary, then instead of a KeyError being thrown, a new entry is created. The type of this new entry is given by the argument of defaultdict.
+
+For example:
+
+somedict = {}
+print(somedict[3]) # KeyError
+
+someddict = defaultdict(int)
+print(someddict[3]) # print int(), thus 0
