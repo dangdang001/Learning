@@ -1,0 +1,21 @@
+class Solution:
+    Solution 1: Brute force(?)
+    def findTargetSumWays(self, nums, S):
+        """
+        :type nums: List[int]
+        :type S: int
+        :rtype: int
+        """
+        def cal(self, nums, S,i,sum_temp):
+            count=0
+            i=0
+            sum_temp=0
+            global count
+            if i==len(nums):
+                if sum_temp==S:
+                    count+=1
+            else:
+                return self.cal(nums, S, i+1, sum_temp+nums[i])+self.cal(nums, S, i+1, sum_temp-nums[i])
+            return count
+        return cal(nums, S, 0,0)
+                
