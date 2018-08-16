@@ -20,6 +20,18 @@ class Solution:
 
 
 # Solution 2: 
+# 当然你会发现，上面的代码使用的空间是冗余的，因为每次循环只会用到前两个数据。所以代码可以降低空间复杂度到O(1)。
+    def rob(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        last,now=0,0
+        for item in nums:
+            last,now=now,max(last+item,now)
+        return now
+        
+# Solution 3: 
     def rob(self, nums):
         """
         :type nums: List[int]
