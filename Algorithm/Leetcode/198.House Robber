@@ -2,6 +2,9 @@ class Solution:
 # Solution 1: DP: 
 # 假设只有一家，那么你只能偷这家；假设有两家，那么你要判断两家哪个钱多，偷哪个；
 # 依次类推，假设有n家，那么你要判断“偷第n家不偷第n-1家且前n-2家尽量多的偷”和“不偷第n家且前n-1家尽量多的偷”，哪个得到的钱多偷哪个。 
+# Assume: money[i]=maximum money robbed from first i-1 house
+# Subproblem: money[i]=max(money[i-1],money[i-2]+num[i])
+# Base cases: money[0]=nums[0], money[1]=max(nums[0],nums[1])
 
     def rob(self, nums):
         """
