@@ -1,0 +1,35 @@
+class Solution:
+# Solution 1: DP: 
+# 假设只有一家，那么你只能偷这家；假设有两家，那么你要判断两家哪个钱多，偷哪个；
+# 依次类推，假设有n家，那么你要判断“偷第n家不偷第n-1家且前n-2家尽量多的偷”和“不偷第n家且前n-1家尽量多的偷”，哪个得到的钱多偷哪个。 
+
+    def rob(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if len(nums)==0:
+            return 0
+        if len(nums)==1:
+            return nums[0]
+        money = [0]*len(nums)
+        money[0],money[1]=nums[0],max(nums[0],nums[1])
+        for i in range(2,len(nums)):
+            money[i]=max(money[i-1],money[i-2]+nums[i])
+        return money[len(nums)-1]
+
+
+# Solution 2: 
+    def rob(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        max_odd,max_even=0,0
+        for i,item in enumerate(nums):
+            if i % 2==1:
+                max_odd=max(max_odd+item,max_even)
+            else:
+                max_even=max(max_even+item,max_odd)
+        return max(max_odd,max_even)
+        
