@@ -1,0 +1,16 @@
+class Solution:
+# Solution 1: Time O(n), Space O(n) 
+    def moveZeroes(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: void Do not return anything, modify nums in-place instead.
+        """
+        stack=[]
+        for i,item in enumerate(nums):
+            if item!=0:
+                stack.append(item)
+        for j in range(len(stack),len(nums)):
+            stack.append(0)
+        for i in range(len(nums)):
+            nums[i]=stack[i]
+            
