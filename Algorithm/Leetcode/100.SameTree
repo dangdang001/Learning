@@ -5,6 +5,7 @@
 #         self.left = None
 #         self.right = None
 
+# Solution: Recursive(compared with 101.symmetric tree problem) Time:o(n) 
 class Solution:
     def isSameTree(self, p, q):
         """
