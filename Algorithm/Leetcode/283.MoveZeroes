@@ -14,3 +14,18 @@ class Solution:
         for i in range(len(nums)):
             nums[i]=stack[i]
             
+# Solution 2: Time O(n), Space O(1) 
+# Mark the last current number of non-zeros and assign the correct index
+    def moveZeroes(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: void Do not return anything, modify nums in-place instead.
+        """
+        last=0
+        for i,item in enumerate(nums):
+            if item!=0:
+                nums[last]=item
+                last+=1
+        for j in range(last,len(nums)):
+            nums[j]=0
+            
