@@ -5,7 +5,7 @@
 #         self.left = None
 #         self.right = None
 
-# Solution 1: Recursive 
+# Solution 1: Recursive Time:O(n). Space:O(h), h is height of binary tree
 class Solution:
     def maxDepth(self, root):
         """
@@ -23,7 +23,7 @@ class Solution:
         else:
             return max(1+self.maxDepth(root.right),1+self.maxDepth(root.left))
             
-# Solution 1: Recursive(simplified)        
+# Solution 2: Recursive(simplified)        
 class Solution:
     def maxDepth(self, root):
         """
