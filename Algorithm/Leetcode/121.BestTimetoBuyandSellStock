@@ -11,3 +11,29 @@ class Solution:
                 diff=prices[j]-prices[i]
                 max_diff=max(max_diff,diff)
         return max_diff
+        
+ #Solution 2: Time:O(n) Space: O(1)
+    def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        min_price,max_profit=float("inf"),0
+        for price in prices:
+            if price<min_price:
+                min_price=price
+            elif price-min_price>max_profit:
+                max_profit=price-min_price
+        return max_profit
+        
+  #Solution 2(Simplified): Time:O(n) Space: O(1)               
+      def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        min_price,max_profit=float("inf"),0
+        for price in prices:
+            min_price=min(min_price,price)
+            max_profit=max(max_profit,price-min_price)
+        return max_profit
