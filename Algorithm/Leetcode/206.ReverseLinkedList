@@ -20,7 +20,7 @@ class Solution:
             cur=temp
         return pre
  
- Solution 2: Recursive. Time: O(n), Space: O(1)
+ Solution 2: Recursive. Time: O(n), Space: O(n)
  class Solution:
     def reverseList(self, head,pre=None):
         """
