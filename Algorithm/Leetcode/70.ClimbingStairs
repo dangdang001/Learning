@@ -1,15 +1,24 @@
 class Solution:
 
+Solution 1: Recursive Time: O(2^n), Space: O(n)
+    def climbStairs(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        if n==1:
+            return 1
+        if n==2:
+            return 2
+        return self.climbStairs(n-1)+self.climbStairs(n-2)
 
-Solution 1: DP Time: O(n), Space: O(n)
+Solution 2: DP Time: O(n), Space: O(n)
 
     def climbStairs(self, n):
         """
         :type n: int
         :rtype: int
         """
-        if n==0:
-            return 0
         if n==1:
             return 1
         D=[0] * n
@@ -19,14 +28,12 @@ Solution 1: DP Time: O(n), Space: O(n)
         return D[n-1]
 
 
-Solution 2: DP with less space Time: O(n), Space: O(1)
+Solution 3: DP with less space Time: O(n), Space: O(1)
     def climbStairs(self, n):
         """
         :type n: int
         :rtype: int
         """
-        if n==0:
-            return 0
         if n==1:
             return 1
         if n==2:
