@@ -1,0 +1,44 @@
+class Solution:
+
+# Solution 1: Sort Time: O(nlogn)
+    def isMonotonic(self, A):
+        """
+        :type A: List[int]
+        :rtype: bool
+        """
+        A_asc=sorted(A)
+        A_des=sorted(A,reverse=True)
+        a,b=0,0
+        for i,item in enumerate(A):
+            if item==A_asc[i]:
+                a+=1
+            if item==A_des[i]:
+                b+=1
+        if a==len(A) or b==len(A):
+            return True
+        else:
+            return False
+
+
+# Solution 2: Time: O(n)
+
+    def isMonotonic(self, A):
+        """
+        :type A: List[int]
+        :rtype: bool
+        """
+        asc,des=True,True
+        a,b=A[0],A[0]
+        for item in A:
+            if item>a:
+                asc=False
+                break
+            else:
+                a=item
+        for item in A:
+            if item<b:
+                des=False
+                break
+            else:
+                b=item
+        return asc | des
