@@ -1,0 +1,27 @@
+
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+
+# Solution 1: In-Order Traversal Time: O(n) Space: O(n)
+class Solution:
+    def increasingBST(self, root):
+        """
+        :type root: TreeNode
+        :rtype: TreeNode
+        """
+        def inorder(node):
+            if node:
+                yield from inorder(node.left)
+                yield node.val
+                yield from inorder(node.right)
+        ans=cur=TreeNode(None)
+        for item in inorder(root):
+            cur.right=TreeNode(item)
+            cur=cur.right
+        return ans.right
