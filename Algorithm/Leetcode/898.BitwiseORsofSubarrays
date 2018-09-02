@@ -1,0 +1,14 @@
+class Solution:
+    def subarrayBitwiseORs(self, A):
+        """
+        :type A: List[int]
+        :rtype: int
+        """
+        result=set()
+        for i in range(len(A)):
+            curr=A[i]
+            for j in range(i,len(A)):
+                curr |= A[j]
+                result.add(curr)
+        return len(result)
+            
