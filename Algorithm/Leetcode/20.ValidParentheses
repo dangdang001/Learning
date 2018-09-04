@@ -1,0 +1,29 @@
+class Solution:
+    def isValid(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        if s==None:
+            return True
+        l=list(s)
+        stack=[]
+        while l:
+            temp1=l.pop()
+            if temp1 in (')',']','}'):
+                stack.append(temp1)
+            else:
+                if not stack:
+                    return False
+                else:
+                    temp2=stack.pop()
+                    if temp1=='(' and temp2==')':
+                        continue
+                    elif temp1=='[' and temp2==']':
+                        continue
+                    elif temp1=='{' and temp2=='}':
+                        continue
+                    else:
+                        return False
+        return True if not stack else False
+        
