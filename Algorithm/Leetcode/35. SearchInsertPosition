@@ -1,0 +1,14 @@
+class Solution:
+    # Solution 1: Linear search Time: O(n) 
+    def searchInsert(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        if target<nums[0]:
+            return 0
+        for i,num in enumerate(nums):
+            if target<=num:
+                return i
+        return len(nums)
