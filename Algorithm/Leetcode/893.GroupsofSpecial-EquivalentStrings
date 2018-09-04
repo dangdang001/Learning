@@ -1,0 +1,21 @@
+class Solution:
+    def numSpecialEquivGroups(self, A):
+        """
+        :type A: List[str]
+        :rtype: int
+        """
+        lookup={}
+        for string in A:
+            even,odd=[], []
+            for i, char in enumerate(string):
+                if i % 2==0:
+                    even=even if char is None else even+[char]
+                else:  
+                    odd=odd if char is None else odd+[char]
+            temp=''.join(sorted(even)+sorted(odd))
+            if temp in lookup:
+                lookup[temp]+=1
+            else:
+                lookup[temp]=1
+        return len(lookup)
+                    
