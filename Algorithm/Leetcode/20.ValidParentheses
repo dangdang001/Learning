@@ -1,4 +1,6 @@
 class Solution:
+
+    # Solution 1 Time: O(n), Space: O(n)
     def isValid(self, s):
         """
         :type s: str
@@ -26,4 +28,27 @@ class Solution:
                     else:
                         return False
         return True if not stack else False
-        
+    
+    # Solution 2: Use hash map to store the matched parenthesis Time: O(n), Space: O(n)
+    def isValid(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        lookup={'(':')','[':']','{':'}'}
+        l=list(s)
+        stack=[]
+        if not l:
+            return True
+        for char in l:
+            if char in lookup:
+                stack.append(char)
+            else:
+                if not stack:
+                    return False
+                else:
+                    if char==lookup[stack.pop()]:
+                        continue
+                    else:
+                        return False
+        return True if not stack else False
