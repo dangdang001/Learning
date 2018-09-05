@@ -1,0 +1,14 @@
+class Solution:
+    def groupAnagrams(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: List[List[str]]
+        """
+        lookup={}
+        for string in strs:
+            string_order=''.join(sorted(string))
+            if string_order not in lookup:
+                lookup[string_order]=[string]
+            else:
+                lookup[string_order].append(string)
+        return list(lookup.values())
