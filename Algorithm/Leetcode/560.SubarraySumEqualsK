@@ -1,26 +1,33 @@
 class Solution:
-    Solution 1: Brute force: Time: >O(n^2), Space: O(n)
+
+# Solution 1: Brute force Time: O(n^3), Space: O(1)
     def subarraySum(self, nums, k):
         """
         :type nums: List[int]
         :type k: int
         :rtype: int
         """
-        lookup={}
+        count=0
         for i in range(len(nums)):
-            if nums[i] in lookup:
-                lookup[nums[i]]+=1
-            else:
-                lookup[nums[i]]=1
-               
-        for i in range(len(nums)-1):
-            for j in range(i+1,len(nums)):
-                temp=sum(nums[i:j+1])
-                if temp in lookup:
-                    lookup[temp]+=1
-                else:
-                    lookup[temp]=1
-        if k in lookup:
-            return lookup[k]
-        else:
-            return 0
+            for j in range(i+1,len(nums)+1):
+                temp=sum(nums[i:j])
+                if temp==k:
+                    count+=1
+        return count
+              
+# Solution 2: Cumulate sum: O(n^2), Space: O(1)
+    def subarraySum(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        count=0
+        for i in range(len(nums)):
+            cum_sum=0
+            for j in range(i,len(nums)):
+                cum_sum+=nums[j]
+                if cum_sum==k:
+                    count+=1
+        return count
+                    
