@@ -31,3 +31,22 @@ class Solution:
                     count+=1
         return count
                     
+# Solution 3: Hash map record cum sum: O(n), Space: O(n)
+    def subarraySum(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        cum,count=0,0
+        lookup={}
+        lookup[0]=1
+        for num in nums:
+            cum+=num
+            if cum-k in lookup:
+                count+=lookup[cum-k]
+            if cum in lookup:
+                lookup[cum]+=1
+            else:
+                lookup[cum]=1
+        return count
