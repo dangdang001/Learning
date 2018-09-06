@@ -1,4 +1,22 @@
 class Solution:
+# Solution 1: Brute force: Time: O(n^3) Space: O(n^3)
+    def threeSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        nums.sort()
+        n=len(nums)
+        result=[]
+        for i in range(n-2):
+            for j in range(i+1,n-1):
+                for k in range(i+2,n):                    
+                    s=nums[i]+nums[j]+nums[k]
+                    if s==0:
+                        result.append([nums[i],nums[j],nums[k]])
+        return list(set([tuple(sorted(x)) for x in result]))
+        
+ # Solution 2: Two Pointers after sorting: Time: O(n^2) Space: O(n^3)
     def threeSum(self, nums):
         """
         :type nums: List[int]
