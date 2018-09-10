@@ -1,0 +1,18 @@
+class Solution:
+    def isSubtree(self, s, t):
+        """
+        :type s: TreeNode
+        :type t: TreeNode
+        :rtype: bool
+        """
+        def isSametree(t1,t2):
+            if not t1 and not t2:
+                return True
+            elif not t1 or not t2:
+                return False
+            return (t1.val==t2.val) and isSametree(t1.left,t2.left) and isSametree(t1.right,t2.right)
+
+        if isSametree(s,t)==True:
+            return True
+        if not s: return False
+        return self.isSubtree(s.left,t) or self.isSubtree(s.right,t)
