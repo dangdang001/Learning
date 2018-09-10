@@ -1,32 +1,27 @@
-
-
-
-
 class Solution:
 
-
-# Method 1: Brute force:
-
+# Solution 1: Brute Force: Time: O(n^3) Space: O(1)
     def longestPalindrome(self, s):
         """
         :type s: str
         :rtype: str
         """
-        max_string=s[0]
+        if len(s)==0:
+            return ""
+        if len(s)==1:
+            return s[0]
         max_len=1
+        max_string=s[0]
         for i in range(len(s)-1):
             for j in range(i+1,len(s)):
-                temp=s[i:(j+1)]
-                k=0
-                while k < len(temp)//2:
-                    if temp[k]!=temp[len(temp)-k-1]:
+                substring=s[i:j+1]
+                n=j-i+1
+                for k in range(n//2+1):
+                    if substring[k]!=substring[n-k-1]:
                         break
-                    else:
-                        k+=1
-                if k==len(temp)//2:
-                    if len(temp)>max_len:
-                        max_string=temp
-                        max_len=len(temp)
+                if k==n//2 and n>max_len:
+                    max_string=substring
+                    max_len=n
         return max_string
                 
           
