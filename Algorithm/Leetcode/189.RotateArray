@@ -1,0 +1,28 @@
+class Solution(object):
+
+# Solution 1: Use Queue and Stack Time: O(n) Space: O(n)
+    def rotate(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: void Do not return anything, modify nums in-place instead.
+        """
+        from collections import deque
+        while k>0:
+            nums=list(nums)
+            temp=nums.pop()
+            nums=deque(nums)
+            nums.appendleft(temp)
+            k-=1
+ 
+ # Solution 2: Reverse and append Time: O(n) Space: O(1)
+     def rotate(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: void Do not return anything, modify nums in-place instead.
+        """
+        n=len(nums)
+        k=k % n
+        nums[:]=nums[n-k:]+nums[:n-k]
+        
