@@ -1,0 +1,24 @@
+class Solution(object):
+
+# Solution 1: Brute Force Time: O(n^2) Space: O(1)
+    def countPrimes(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        if n<=2:
+            return 0
+        if n==3:
+            return 1
+        count=1
+        for i in range(3,n):
+            flag=False
+            for j in range(2,i):
+                if i % j==0:
+                    flag=True
+            if flag==False: count+=1
+        return count
+                
+                
+                
+                
