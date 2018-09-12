@@ -15,7 +15,8 @@ class Solution:
                     return True
         return False
                         
-        
+# funcion to check if the word exists starting location [i,j]   
+
     def dfs(self,board,i,j,word):
         if len(word)==0:
             return True
