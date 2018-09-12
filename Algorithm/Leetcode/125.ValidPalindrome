@@ -14,3 +14,15 @@ class Solution:
             if char!=s_cat[len(s_cat)-i-1]:
                 return False
         return True
+
+# To be short:
+    def isPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        s_cat=[char.lower() for char in s if char.isalnum()]
+        for i,char in enumerate(s_cat):
+            if char!=s_cat[len(s_cat)-i-1]:
+                return False
+        return True
