@@ -1,0 +1,16 @@
+class Solution:
+
+# Time: O(n), Space: O(1)
+    def isPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        s_cat=""
+        for char in s:
+            if char.isalnum():
+                s_cat+=char.lower()
+        for i,char in enumerate(s_cat):
+            if char!=s_cat[len(s_cat)-i-1]:
+                return False
+        return True
