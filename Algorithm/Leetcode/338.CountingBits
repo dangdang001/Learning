@@ -1,6 +1,6 @@
 class Solution:
 
-# Solution 1: Brute force: Time: O(n*sizeof(integer)) Space: O(n)
+# Solution 1: Brute force: Time: O(n^2) Space: O(n)
     def countBits(self, num):
         """
         :type num: int
