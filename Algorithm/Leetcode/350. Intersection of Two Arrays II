@@ -1,0 +1,19 @@
+class Solution:
+    def intersect(self, nums1, nums2):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :rtype: List[int]
+        """
+        lookup={}
+        result=[]
+        for item in nums1:
+            if item in lookup:
+                lookup[item]+=1
+            else:
+                lookup[item]=1
+        for item in nums2:
+            if item in lookup and lookup[item]>0:
+                result.append(item)
+                lookup[item]-=1
+        return result
