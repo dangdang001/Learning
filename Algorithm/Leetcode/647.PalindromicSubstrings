@@ -23,4 +23,23 @@ class Solution:
                 if isPalindromatic(string):
                     count+=1
         return count
-                
+ 
+ # Solution 2: Expand Around Center, Time: O(n^2), Space: O(1)
+ # Note: 
+ # 1.Let N be the length of the string. The middle of the palindrome could be in one of 2N - 1 positions: either at letter or between two letters.
+ # 2.For each center, let's count all the palindromes that have this center. Notice that if [a, b] is a palindromic interval (meaning S[a], S[a+1], ..., S[b] is a palindrome), then [a+1, b-1] is one too.
+ 
+    def countSubstrings(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        count=0
+        for center in range(2*len(s)-1):
+            left=center //2
+            right=left + center % 2
+            while left>=0 and right<len(s) and s[left]==s[right]:
+                left-=1
+                right+=1
+                count+=1
+        return count
