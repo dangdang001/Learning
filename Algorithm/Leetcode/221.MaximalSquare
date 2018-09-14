@@ -1,0 +1,33 @@
+class Solution:
+
+# Solution 1: Brute Force: TIme: O((mn)^2), Space: O(1)
+
+# Note: for every entry M[i,j], if M[i,j]==1, enlarge the sqaure by diagnoal(+1 each step) and check the added row and column:
+#                                             if M[i+k,j:j+k]!=0 and M[i:i+k,j+k]!=0, max_size+1
+
+    def maximalSquare(self, matrix):
+        """
+        :type matrix: List[List[str]]
+        :rtype: int
+        """
+        max_size=0
+        for i in range(len(matrix)):
+            for j in range(len(matrix[0])):
+                if matrix[i][j]=="1":
+                    n=min(len(matrix)-i,len(matrix[0])-j)
+                    k=1
+                    while k<=n:
+                        flag=False
+                        for a in range(i,i+k):
+                            if matrix[a][j+k-1]=="0":
+                                flag=True
+                        for b in range(j,j+k):
+                            if matrix[i+k-1][b]=="0":
+                                flag=True
+                        if flag==True:
+                            break
+                        if flag==False:
+                            max_size=max(max_size,k)
+                            k+=1                                                                        
+        return max_size**2
+                            
