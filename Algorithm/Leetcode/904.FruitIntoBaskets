@@ -1,0 +1,47 @@
+class Solution:
+    def totalFruit(self, tree):
+        """
+        :type tree: List[int]
+        :rtype: int
+        """
+        if len(tree)==0:
+            return 0
+        if len(tree)==1:
+            return 1
+        max_count=0
+        for i in range(len(tree)-1):
+            type1=tree[i]
+            flag=False
+            count=1
+            for j in range(i+1,len(tree)):
+                if tree[j]==type1:
+                    count+=1
+                elif flag==False:
+                    flag=True
+                    type2=tree[j]
+                    count+=1
+                elif tree[j]==type2:
+                    count+=1
+                else:
+                    break
+            max_count=max(max_count,count)
+        return max_count
+        
+        
+    def totalFruit(self, tree):
+        """
+        :type tree: List[int]
+        :rtype: int
+        """
+        max_count=0
+        for i in range(len(tree)):
+            candidate=set()
+            j=i
+            while j<len(tree):
+                if tree[j] not in candidate:
+                    candidate.add(tree[j])
+                    if len(candidate)>2:
+                        break
+                j+=1
+            max_count=max(max_count,j-i)
+        return max_count
