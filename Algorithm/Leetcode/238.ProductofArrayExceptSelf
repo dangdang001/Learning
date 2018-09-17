@@ -1,0 +1,34 @@
+class Solution:
+
+# Solution 1: Time: O(n^2), Space: O(n)
+    def productExceptSelf(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        result=[1]*len(nums)
+        for i,item in enumerate(nums):
+            temp=result[i]
+            result=[x*item for x in result]
+            result[i]=temp
+        return result
+            
+            
+
+# Solution 2: Time: O(n), Space: O(n)
+    def productExceptSelf(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        result=[]
+        n=len(nums)
+        p=1
+        for i in range(n):
+            result.append(p)
+            p*=nums[i]
+        p=1
+        for j in range(n-1,-1,-1):
+            result[j]*=p
+            p*=nums[j]
+        return result
