@@ -16,19 +16,21 @@ class Solution:
             
 
 # Solution 2: Time: O(n), Space: O(n)
+
     def productExceptSelf(self, nums):
         """
         :type nums: List[int]
         :rtype: List[int]
         """
-        result=[]
         n=len(nums)
-        p=1
+        result=[]
+        prod_pre=1
         for i in range(n):
-            result.append(p)
-            p*=nums[i]
-        p=1
+            result.append(prod_pre)
+            prod_pre=prod_pre*nums[i]
+        prod_post=1
         for j in range(n-1,-1,-1):
-            result[j]*=p
-            p*=nums[j]
+            result[j]=result[j]*prod_post
+            prod_post=prod_post*nums[j]
         return result
+            
