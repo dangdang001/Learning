@@ -1,0 +1,29 @@
+class Solution:
+
+# Solution 1: Hash map and selection sort
+    def topKFrequent(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: List[int]
+        """
+        lookup={}
+        for item in nums:
+            if item in lookup:
+                lookup[item]+=1
+            else:
+                lookup[item]=1
+        result=[]
+        i=1
+        while i<=k:
+            max_temp=float("-inf")
+            max_key=None
+            for key,value in lookup.items():
+                if value>max_temp:
+                    max_temp=value
+                    max_key=key
+            result.append(max_key)
+            del lookup[max_key]
+            i+=1
+        return result
+            
