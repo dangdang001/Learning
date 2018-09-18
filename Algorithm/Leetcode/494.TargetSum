@@ -6,18 +6,18 @@ class Solution:
         :type S: int
         :rtype: int
         """
-        def cal(self, nums, S,i,sum_temp):
-            count=0
-            i=0
-            sum_temp=0
-            global count
-            if i==len(nums):
-                if sum_temp==S:
-                    count+=1
-            else:
-                return self.cal(nums, S, i+1, sum_temp+nums[i])+self.cal(nums, S, i+1, sum_temp-nums[i])
-            return count
-        return cal(nums, S, 0,0)
+
+        self.count=0
+        self.helper(nums,0,0,S)
+        return self.count
+  
+    def helper(self,nums,index,temp_sum,S):
+        if index==len(nums):
+            if temp_sum==S:
+                self.count+=1
+        else:
+            self.helper(nums,index+1,temp_sum+nums[index],S)
+            self.helper(nums,index+1,temp_sum-nums[index],S)
                 
 # naive dfs, O(2^n), TLE
 class Solution(object):
