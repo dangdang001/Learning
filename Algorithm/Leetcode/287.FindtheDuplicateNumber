@@ -1,0 +1,17 @@
+class Solution:
+
+# Solution 1: Hash Map, Time: O(n), Space: O(n)
+    def findDuplicate(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        lookup={}
+        for item in nums:
+            if item not in lookup:
+                lookup[item]=1
+            else:
+                lookup[item]+=1
+        for key,value in lookup.items():
+            if value>1:
+                return key
