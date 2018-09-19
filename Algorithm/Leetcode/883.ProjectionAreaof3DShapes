@@ -1,0 +1,60 @@
+#Intuition and Algorithm
+
+#From the top, the shadow made by the shape will be 1 square for each non-zero value.
+
+#From the side, the shadow made by the shape will be the largest value for each row in the grid.
+
+#From the front, the shadow made by the shape will be the largest value for each column in the grid.
+
+
+class Solution:
+    def projectionArea(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        nrow=len(grid)
+        ncol=len(grid[0])
+        top=0
+        
+        for i in range(nrow):
+            for j in range(ncol):
+                if grid[i][j]>0:
+                    top+=1
+        side=0
+        for i in range(nrow):
+            max_row=0
+            for j in range(ncol):
+                max_row=max(max_row,grid[i][j])
+            side+=max_row
+            
+        front=0
+        for j in range(ncol):
+            max_col=0
+            for i in range(nrow):
+                max_col=max(max_col,grid[i][j])
+            front+=max_col
+        
+        return top+side+front
+
+
+    def projectionArea(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        n=len(grid)
+        
+        top=0;side=0;front=0
+        
+        for i in range(n):
+            max_row=0;max_col=0
+            for j in range(n):
+                if grid[i][j]>0:
+                    top+=1
+                max_row=max(max_row,grid[i][j])
+                max_col=max(max_col,grid[j][i])
+            side+=max_row
+            front+=max_col                
+        return top+side+front
+            
