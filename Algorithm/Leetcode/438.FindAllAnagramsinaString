@@ -1,0 +1,40 @@
+class Solution:
+
+# Solution 1: Time: O(nmlogm) Space: O(n)
+    def findAnagrams(self, s, p):
+        """
+        :type s: str
+        :type p: str
+        :rtype: List[int]
+        """
+        s=list(s)
+        p=list(p)
+        n=len(s)
+        m=len(p)
+        p.sort()
+        result=[]
+        for i in range(n):
+            if sorted(s[i:i+m])==p:
+                result.append(i)
+        return result
+        
+        
+# Solution 2: SLiding window using counter Time: O(n) Space: O(n)        
+    def findAnagrams(self, s, p):
+        """
+        :type s: str
+        :type p: str
+        :rtype: List[int]
+        """
+        from collections import Counter
+        pCounter=Counter(p)
+        sCounter=Counter(s[:len(p)-1])
+        result=[]
+        for i in range(len(p)-1,len(s)):
+            sCounter[s[i]]+=1
+            if sCounter==pCounter:
+                result.append(i-len(p)+1)
+            sCounter[s[i-len(p)+1]]-=1
+            if sCounter[s[i-len(p)+1]]==0:
+                del sCounter[s[i-len(p)+1]]
+        return result
