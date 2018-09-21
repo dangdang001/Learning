@@ -1,0 +1,23 @@
+
+# Compare with the HouseRobberI problem where no circle exist
+# Only difference is: we can only choose one from the 1st and the -1st elements
+# so do the same thing and compare the two conditions(nums[1:] which is the sequence without 1st, and nums[-1] which is the sequence without last)
+
+class Solution:
+    def rob(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if len(nums)==0:
+            return 0
+        if len(nums)==1:
+            return nums[0]
+        last1=0;now1=0
+        last2=0;now2=0
+        for item in nums[1:]:
+            last1,now1=now1,max(last1+item,now1)
+        for item in nums[:-1]:
+            last2,now2=now2,max(last2+item,now2)
+        return max(now1,now2)
+        
