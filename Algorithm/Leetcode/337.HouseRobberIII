@@ -1,0 +1,34 @@
+class Solution:
+
+# Solution 1 : Recursion, Time: Exponential 
+    def rob(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        if not root:
+            return 0
+        val=0
+        if root.left:
+            val+=self.rob(root.left.left)+self.rob(root.left.right)
+        if root.right:
+            val+=self.rob(root.right.left)+self.rob(root.right.right)
+        return max(val+root.val,self.rob(root.left)+self.rob(root.right))
+        
+# Solution 2 : DP, Time: O(n)      
+
+class Solution:
+    def rob(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        return max(self.subrob(root)[0],self.subrob(root)[1])
+    def subrob(self, root):
+        if not root:
+            return [0,0]
+        left=self.subrob(root.left)
+        right=self.subrob(root.right)
+        now=root.val+left[1]+right[1]
+        later=max(left[0],left[1])+max(right[0],right[1])
+        return [now,later]
