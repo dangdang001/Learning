@@ -1,0 +1,18 @@
+class Solution:
+    def containsNearbyDuplicate(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: bool
+        """
+        lookup={}
+        for i,item in enumerate(nums):
+            if item not in lookup:
+                lookup[item]=i
+            else:
+                if i-lookup[item]<=k:
+                    return True
+                else:
+                    lookup[item]=i                  
+        return False
+                
