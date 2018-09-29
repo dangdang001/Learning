@@ -1,0 +1,21 @@
+class Solution:
+    def isHappy(self, n):
+        """
+        :type n: int
+        :rtype: bool
+        """
+        return self.helper(n,set())
+        
+    def helper(self,num,all_num):
+        if num==1:
+            return True
+        new_num=0
+        while num:
+            new_num+=(num % 10)*(num % 10)
+            num=num // 10
+        if new_num in all_num:
+            return False
+        else:
+            all_num.add(new_num)
+            return self.helper(new_num,all_num)
+            
