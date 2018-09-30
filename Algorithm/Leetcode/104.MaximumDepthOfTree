@@ -33,3 +33,26 @@ class Solution:
         if root==None:
             return 0
         return max(self.maxDepth(root.left),self.maxDepth(root.right))+1
+
+# Solution 3: Level-order traversal
+
+    def maxDepth(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        if not root:
+            return 0
+        level=[root]
+        n=1
+        while level:
+            temp=[]
+            for item in level:
+                if item.left:
+                    temp.append(item.left)
+                if item.right:
+                    temp.append(item.right)
+            level=temp
+            n+=1
+        return n-1
+        
