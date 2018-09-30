@@ -25,3 +25,14 @@ class Solution:
                     if item.right: temp.append(item.right)
             level=temp
             n+=1
+
+    def minDepth(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        if not root:
+            return 0
+        if not root.left or not root.right:
+            return max(self.minDepth(root.left)+1,self.minDepth(root.right)+1)
+        return min(self.minDepth(root.left)+1,self.minDepth(root.right)+1)
