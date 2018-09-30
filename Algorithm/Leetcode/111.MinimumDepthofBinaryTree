@@ -1,0 +1,28 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def minDepth(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        if not root:
+            return 0
+        level=[root]
+        n=1
+        while level:
+            temp=[]
+            for item in level:
+                if item.left:
+                    temp.append(item.left)
+                if item.right:
+                    temp.append(item.right)
+                if not item.left and not item.right:
+                    return n
+            n+=1
+            level=temp
