@@ -1,0 +1,24 @@
+class Solution:
+    def decodeString(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        stack=[]
+        cur_num=0
+        cur_string=""
+        for char in s:
+            if char.isdigit():
+                cur_num=cur_num*10+int(char)
+            elif char=='[':
+                stack.append(cur_string)
+                stack.append(cur_num)
+                cur_num=0
+                cur_string=""
+            elif char==']':
+                num=stack.pop()
+                pre_string=stack.pop()
+                cur_string=pre_string+cur_string*num
+            else:
+                cur_string+=char
+        return cur_string
