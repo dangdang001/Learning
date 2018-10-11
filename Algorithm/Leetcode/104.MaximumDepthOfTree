@@ -44,8 +44,9 @@ class Solution:
         if not root:
             return 0
         level=[root]
-        n=1
+        n=0
         while level:
+            n+=1
             temp=[]
             for item in level:
                 if item.left:
@@ -53,6 +54,5 @@ class Solution:
                 if item.right:
                     temp.append(item.right)
             level=temp
-            n+=1
-        return n-1
+        return n
         
