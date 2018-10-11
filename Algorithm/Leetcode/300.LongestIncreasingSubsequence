@@ -1,3 +1,8 @@
+# Time: O(n^2) Space: O(n)
+
+# D[i] represents the length of the longest increasing subsequence possible considering the array elements upto the ith index,
+# by necessarily including the ith element. 
+
 class Solution:
     def lengthOfLIS(self, nums):
         """
