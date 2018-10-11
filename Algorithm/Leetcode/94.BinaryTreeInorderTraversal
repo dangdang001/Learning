@@ -21,3 +21,23 @@ class Solution:
             self.helper(root.left,res)
             res.append(root.val)
             self.helper(root.right,res)
+
+
+# Solution 2 : Iterative, Time: O(n), Space: O(n) 
+
+    def inorderTraversal(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        res,stack=[],[]
+        while True:
+            while root:
+                stack.append(root)
+                root=root.left
+            if not stack:
+                return res
+            root=stack.pop()
+            res.append(root.val)
+            root=root.right
+            
