@@ -1,3 +1,6 @@
+# DP: Time: O(n*amount), Space: O(amount)
+# Compare with the 279. Perfect Squares
+
 class Solution(object):
     def coinChange(self, coins, amount):
         """
