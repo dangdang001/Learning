@@ -1,0 +1,29 @@
+Modifed BInary Search
+
+Conditions:
+     1. array length is 1  -> return the only index 
+     2. array length is 2  -> return the bigger number's index 
+     3. array length is bigger than 2 -> 
+           (1) find mid, compare it with its left and right neighbors  
+           (2) return mid if nums[mid] greater than both neighbors
+           (3) if nums[mid] smaller than right neighbor: take the right half array (right half nust have peak)
+           (4) if nums[mid] smaller than left neighbor: take the left half (left half nust have peak)
+
+class Solution:
+    def findPeakElement(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        n=len(nums)
+        left,right=0,n-1
+        while left<right:
+            mid=(left+right)//2
+            if nums[mid]>nums[mid-1] and nums[mid]>nums[mid+1]:
+                return mid
+            elif nums[mid]<nums[mid-1]:
+                right=mid-1
+            elif nums[mid]<nums[mid+1]:
+                left=left+1
+        return left
+        
