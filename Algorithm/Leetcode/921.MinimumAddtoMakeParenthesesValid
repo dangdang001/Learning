@@ -1,0 +1,50 @@
+class Solution:
+
+# Solution: Brute Force using stack
+    def minAddToMakeValid(self, S):
+        """
+        :type S: str
+        :rtype: int
+        """
+        if len(S)==0:
+            return 0
+        stack=[]
+        count=0
+        for item in S:
+            if stack:
+                last=stack.pop()
+                if last==')':
+                    count+=1
+                    if item==')':
+                        count+=1
+                    else:
+                        stack.append(item)
+                elif last=='(' and item==')':
+                    continue
+                elif last=='(' and item=='(':
+                    stack.append(last)
+                    stack.append(item)
+            else:
+                stack.append(item)
+        return count+len(stack)
+        
+
+# Solution: Balance
+
+      def minAddToMakeValid(self, S):
+        """
+        :type S: str
+        :rtype: int
+        """
+        count=0
+        balance=0
+        for item in S:
+            if item=='(':
+                balance+=1
+            else:
+                balance-=1
+            if balance==-1:
+                count+=1
+                balance=0
+        return count+balance
+            
