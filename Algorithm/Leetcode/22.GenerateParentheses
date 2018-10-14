@@ -1,0 +1,19 @@
+# Solution: Backtracking
+
+class Solution:
+    def generateParenthesis(self, n):
+        """
+        :type n: int
+        :rtype: List[str]
+        """
+        result=[]
+        self.helper('',n,n,result,n)
+        return result
+    def helper(self,string,left,right,result,n):
+        if len(string)==n*2:
+            result.append(string)
+            string=''
+        if left>0:
+            self.helper(string+'(',left-1,right,result,n)
+        if right>left:
+            self.helper(string+')',left,right-1,result,n)
