@@ -1,0 +1,48 @@
+class Solution:
+    def threeSumMulti(self, A, target):
+        """
+        :type A: List[int]
+        :type target: int
+        :rtype: int
+        """
+        from collections import Counter
+        import math 
+        hashmap=Counter(A)
+        A.sort()
+        n=len(A)
+        res=[]
+        count=0
+        for i in range(n-2):
+            if i>0 and A[i]==A[i-1]:
+                continue
+            left,right=i+1,n-1
+            while left<right:
+                temp=A[i]+A[left]+A[right]
+                if temp==target:
+                    res.append([A[i],A[left],A[right]])
+                    left+=1
+                    right-=1
+                    while left<right and A[left]==A[left-1]:
+                        left+=1
+                    while left<right and A[right]==A[right+1]:
+                        right-=1
+                elif temp>target:
+                    right-=1
+                else:
+                    left+=1
+        for comb in res:
+            temp=1
+            lookup={}
+            for item in comb:
+                if item not in lookup:
+                    lookup[item]=1
+                else:
+                    lookup[item]+=1
+            for key,value in lookup.items():
+                temp*=math.factorial(hashmap[key])//(math.factorial(value)*math.factorial(hashmap[key]-value))
+            count+=temp
+            
+        return count % (10**9 + 7)
+        
+        
+        
