@@ -1,0 +1,23 @@
+class Solution:
+    def countAndSay(self, n):
+        """
+        :type n: int
+        :rtype: str
+        """
+        s='1'
+        k=1
+        while k<n:
+            count=0
+            curr=s[0]
+            string=''
+            for item in s:
+                if item==curr:
+                    count+=1
+                else:
+                    string+=str(count)+curr
+                    curr=item
+                    count=1
+            string+=str(count)+curr
+            s=string
+            k+=1
+        return s
