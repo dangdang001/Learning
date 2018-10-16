@@ -17,4 +17,33 @@ class Solution:
                     break
                 k+=1
         return D[0]
-            
+ 
+ # Solution 2: Greedy, Time: O(n), Space: O(1)
+    def canJump(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        n=len(nums)        
+        max_index=0
+        for i in range(n-1):
+            if i<=max_index:
+                max_index=max(max_index,i+nums[i])
+            else:
+                return False
+        return max_index>=(n-1)
+
+ # Solution 3: Greedy, Time: O(n), Space: O(1)
+    def canJump(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        n=len(nums)
+        last=n-1
+        for i in range(n-2,-1,-1):
+            if i+nums[i]>=last:
+                last=i
+        return last==0
+        
+                
