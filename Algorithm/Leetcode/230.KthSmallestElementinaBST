@@ -25,7 +25,7 @@ class Solution:
             root=root.right
         return res[k-1]
         
-# Solution 2: Inorder traversal: Time: O(n), Space: O(n)
+# Solution 2: Iterative Inorder traversal: Time: O(n), Space: O(n)
 
     def kthSmallest(self, root, k):
         """
