@@ -5,6 +5,8 @@
 #         self.left = None
 #         self.right = None
 
+# Solution 1: Recursive Inorder Traversal Time: O(n) Space: O(1)
+
 class Solution(object):
     def isValidBST(self, root, floor=float("-inf"),ceiling=float("inf")):
         """
@@ -17,3 +19,25 @@ class Solution(object):
             return False
         return self.isValidBST(root.left,floor=floor,ceiling=root.val) and \
                 self.isValidBST(root.right,floor=root.val,ceiling=ceiling)
+
+# Solution 2: Iterative Inorder Traversal Time: O(n) Space: O(n)
+
+class Solution:
+    def isValidBST(self, root):
+        """
+        :type root: TreeNode
+        :rtype: bool
+        """
+        stack=[]
+        pre=float('-inf')
+        while root or stack:
+            while root:
+                stack.append(root)
+                root=root.left
+            root=stack.pop()
+            if root.val<=pre:
+                return False
+            pre=root.val
+            root=root.right
+        return True
+        
