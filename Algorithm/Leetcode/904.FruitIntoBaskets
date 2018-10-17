@@ -22,51 +22,25 @@ class Solution:
                 if len(lookup)<=2:
                     max_len=max(max_len,j-i+1)
         return max_len
-        
-        
-    def totalFruit(self, tree):
-        """
-        :type tree: List[int]
-        :rtype: int
-        """
-        if len(tree)==0:
-            return 0
-        if len(tree)==1:
-            return 1
-        max_count=0
-        for i in range(len(tree)-1):
-            type1=tree[i]
-            flag=False
-            count=1
-            for j in range(i+1,len(tree)):
-                if tree[j]==type1:
-                    count+=1
-                elif flag==False:
-                    flag=True
-                    type2=tree[j]
-                    count+=1
-                elif tree[j]==type2:
-                    count+=1
-                else:
-                    break
-            max_count=max(max_count,count)
-        return max_count
-        
+
+
+# Solution 2: Sliding window using counter Time: O(n) Space: O(n)
         
     def totalFruit(self, tree):
         """
         :type tree: List[int]
         :rtype: int
         """
-        max_count=0
-        for i in range(len(tree)):
-            candidate=set()
-            j=i
-            while j<len(tree):
-                if tree[j] not in candidate:
-                    candidate.add(tree[j])
-                    if len(candidate)>2:
-                        break
-                j+=1
-            max_count=max(max_count,j-i)
-        return max_count
+        from collections import Counter
+        basket=Counter()
+        start,res=0,0
+        for i,item in enumerate(tree):
+            basket[item]+=1
+            while len(basket)>2:
+                basket[tree[start]]-=1
+                if basket[tree[start]]==0:
+                    del basket[tree[start]]
+                start+=1
+            res=max(res,i-start+1)
+        return res
+            
