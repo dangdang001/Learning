@@ -25,6 +25,9 @@ class Solution:
 
 
 # Solution 2: Sliding window using counter Time: O(n) Space: O(n)
+
+# Keep tracking of the starting point
+# Once the basket is full(fruit type>2), delete fruits from the starting point one by one until there were only 2 types of fruit left.
         
     def totalFruit(self, tree):
         """
