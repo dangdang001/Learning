@@ -1,4 +1,29 @@
 class Solution:
+
+# Solution 1: Brute Force Time: O(n^2) Space: O(n)
+    def totalFruit(self, tree):
+        """
+        :type tree: List[int]
+        :rtype: int
+        """
+        n=len(tree)
+        max_len=1
+        for i in range(n-1):
+            for j in range(i+1,n):
+                temp=tree[i:j+1]
+                lookup={}
+                for item in temp:
+                    if item in lookup:
+                        lookup[item]+=1
+                    else:
+                        lookup[item]=1
+                        if len(lookup)>2:
+                            break
+                if len(lookup)<=2:
+                    max_len=max(max_len,j-i+1)
+        return max_len
+        
+        
     def totalFruit(self, tree):
         """
         :type tree: List[int]
