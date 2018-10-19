@@ -1,0 +1,35 @@
+class Solution(object):
+    def canFinish(self, numCourses, prerequisites):
+        """
+        :type numCourses: int
+        :type prerequisites: List[List[int]]
+        :rtype: bool
+        """
+        n=numCourses
+        graph=[[] for _ in range(n)]
+        visit=[0 for _ in range(n)]
+        for x,y in prerequisites:
+            # put all courses with prerequisites x together into graph[x]
+            graph[x].append(y)
+        
+        # visit each node
+        for i in range(n):
+            if not self.dfs(graph,visit,i):
+                return False
+        return True
+    
+    def dfs(self,graph,visit,i):
+        # if the node is under visiting, find cycle
+        if visit[i]==-1:
+            return False
+        # if the node is done with visiting, return true:
+        if visit[i]==1:
+            return True
+        # else make the node as under visiting
+        visit[i]=-1
+        for j in graph[i]:
+            if not self.dfs(graph,visit,j):
+                return False
+        # done with visiting
+        visit[i]=1
+        return True
