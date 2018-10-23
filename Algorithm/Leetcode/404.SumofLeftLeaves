@@ -27,13 +27,16 @@ class Solution:
         :type root: TreeNode
         :rtype: int
         """
-        if root==None:
+        if not root:
             return 0
-        if root.left!=None:
-            if root.left.left==None and root.left.right==None:
+        ans=0
+        if root.left:
+            # if left node is leaf node, add its value; else treat it as new root
+            if not root.left.left and not root.left.right:
                 ans+=root.left.val
             else:
                 ans+=self.sumOfLeftLeaves(root.left)
-        ans+=self.sumOfLeftLeaves(root.right)
+        # treat the right node as new root
+        ans+=self.sumOfLeftLeaves(root.right)      
         return ans
         
