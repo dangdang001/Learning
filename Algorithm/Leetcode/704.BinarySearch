@@ -40,9 +40,8 @@ class Solution:
             else:
                 right=mid
                 
-    # Post-processing:
-    # End Condition: left == right
-    
+        # Post-processing:
+        # End Condition: left == right
         if left!=len(nums) and nums[left]==target:
             return left
         return -1
