@@ -2,6 +2,9 @@
 # Time: O(logn), Space: O(1)
 
 class Solution:
+
+# Version 1
+
     def search(self, nums, target):
         """
         :type nums: List[int]
@@ -17,4 +20,29 @@ class Solution:
                 left=mid+1
             elif target<nums[mid]:
                 right=mid-1
+        return -1
+
+# Version 2
+
+    def search(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        left,right=0,len(nums)
+        while left<right:
+            mid=(left+right)//2
+            if target==nums[mid]:
+                return mid
+            elif target>nums[mid]:
+                left=mid+1
+            else:
+                right=mid
+                
+    # Post-processing:
+    # End Condition: left == right
+    
+        if left!=len(nums) and nums[left]==target:
+            return left
         return -1
