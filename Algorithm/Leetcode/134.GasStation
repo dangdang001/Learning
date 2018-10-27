@@ -1,0 +1,42 @@
+class Solution(object):
+    def canCompleteCircuit(self, gas, cost):
+        """
+        :type gas: List[int]
+        :type cost: List[int]
+        :rtype: int
+        """
+        n=len(gas)
+        for k in range(n):
+            gas_temp=gas[k:]+gas[:k]
+            cost_temp=cost[k:]+cost[:k]
+            now=0
+            i=0
+            while i<=n-1:
+                if now+gas_temp[i]<cost_temp[i]:
+                    break
+                else:
+                    now=now+gas_temp[i]-cost_temp[i]
+                    i+=1
+            if i==n:
+                return k
+        return -1
+        
+    def canCompleteCircuit(self, gas, cost):
+        """
+        :type gas: List[int]
+        :type cost: List[int]
+        :rtype: int
+        """
+        n=len(gas)
+        balance=0
+        start=0
+        total=0
+        for i in range(n):
+            total+=gas[i]-cost[i]
+            balance+=gas[i]-cost[i]
+            if balance<0:
+                balance=0
+                start=i+1
+        if total<0:
+            return -1
+        return start
