@@ -1,0 +1,28 @@
+# Time: O(n)
+
+
+class Solution(object):
+    def findShortestSubArray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        from collections import Counter
+        c=Counter(nums)
+        degree=max(c.values())
+        min_len=len(nums)
+        
+        # define two dict to record the first and last position of each element in nums
+        first,last={},{}
+        for i,num in enumerate(nums):
+            if num not in first:
+                first[num]=i
+            last[num]=i
+        
+        for key in first:
+            if c[key]==degree:
+                min_len=min(min_len,last[key]-first[key]+1)            
+        return min_len
+            
+            
+            
