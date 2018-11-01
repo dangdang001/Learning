@@ -4,6 +4,9 @@
 #         self.start = s
 #         self.end = e
 
+# Sort by start of the interval first, then:
+# if last and now have overlaps: extend the last
+# else: append last and start again with now
 class Solution(object):
     def merge(self, intervals):
         """
