@@ -1,0 +1,25 @@
+class Solution(object):
+    def spiralOrder(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: List[int]
+        """
+        if not matrix:
+            return []
+        dir_r=[0,1,0,-1]
+        dir_c=[1,0,-1,0]
+        n,m=len(matrix),len(matrix[0])
+        res=[]
+        visit=[[False for j in range(m)] for i in range(n)]
+        i,j,k=0,0,0
+        for _ in range(n*m):
+            res.append(matrix[i][j])
+            visit[i][j]=True
+            a,b=i+dir_r[k],j+dir_c[k]
+            if 0<=a<n and 0<=b<m and visit[a][b]==False:
+                i,j=a,b
+            else:
+                k=(k+1) % 4
+                i,j=i+dir_r[k],j+dir_c[k]
+        return res
+            
