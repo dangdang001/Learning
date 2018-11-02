@@ -59,3 +59,36 @@ class Solution(object):
                         break
             max_square=max(max_square,i**2+j**2)
         return max_square
+        
+    def robotSim(self, commands, obstacles):
+        """
+        :type commands: List[int]
+        :type obstacles: List[List[int]]
+        :rtype: int
+        """
+        if not commands:
+            return 0
+        dir_x=[0,1,0,-1]
+        dir_y=[1,0,-1,0]
+        i,j,k=0,0,0
+        xi,yi=dir_x[k], dir_y[k]
+        obstacles=set([tuple(x) for x in obstacles])
+        max_dist=0
+        for command in commands:
+            if command==-2:
+                k=(k-1) % 4
+                xi,yi=dir_x[k], dir_y[k]
+            elif command==-1:
+                k=(k+1) % 4
+                xi,yi=dir_x[k], dir_y[k]
+            else:
+                while command>0:
+                    a,b=i+xi,j+yi
+                    if (a,b) in obstacles:
+                        break
+                    else:
+                        i,j=a,b
+                        command-=1
+            max_dist=max(max_dist,i**2+j**2)
+        return max_dist
+                
