@@ -18,3 +18,23 @@ class Solution(object):
             row+=d
         return "".join([j for i in res for j in i])
             
+class Solution(object):
+    def convert(self, s, numRows):
+        """
+        :type s: str
+        :type numRows: int
+        :rtype: str
+        """
+        if numRows<=1:
+            return s
+            
+        res=["" for _ in range(numRows)]
+        d=-1
+        row=0
+        for i, item in enumerate(s):
+            res[row]+=str(item)
+            if i % (numRows-1)==0:
+                d*=-1
+            row+=d
+        return "".join(res)
+            
