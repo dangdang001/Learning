@@ -46,10 +46,30 @@ class Solution(object):
             current.next=ListNode(1)
         return dummy.next
 
-if __name__=="__main__":
-    a, a.next, a.next.next=ListNode(2), ListNode(4),ListNode(3)
-    b, b.next, b.next.next=ListNode(5), ListNode(6),ListNode(4)
-    result = Solution().addTwoNumbers(a, b)
-    print "{0}->{1}->{2}".format(result.val, result.next.val, result.next.next.val)
+class Solution(object):
+    def addTwoNumbers(self, l1, l2):
+        """
+        :type l1: ListNode
+        :type l2: ListNode
+        :rtype: ListNode
+        """
+        # first take two numbers out
+        num1,num2=0,0
+        i,j=0,0
+        while l1:
+            num1+=l1.val*10**i
+            l1=l1.next
+            i+=1
+        while l2:
+            num2+=l2.val*10**j
+            l2=l2.next
+            j+=1
+        string=reversed(str(num1+num2))
+        dummy=res=ListNode(0)
+        print(res)
+        for s in string:
+            res.next=ListNode(int(s))
+            res=res.next
+        return dummy.next
         
     
