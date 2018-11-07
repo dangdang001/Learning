@@ -1,0 +1,50 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    # Solution 1: Brute Force: Time: O(NlogN)
+    def mergeKLists(self, lists):
+        """
+        :type lists: List[ListNode]
+        :rtype: ListNode
+        """
+        res=[]
+        for list in lists:
+            while list:
+                res.append(list.val)
+                list=list.next
+        res.sort()
+        dummy=new=ListNode(0)
+        for item in res:
+            new.val=item
+            new=new.next
+        return dummy.next
+        
+    # Solution 2: Merge sort Time: O(nk)
+    def mergeKLists(self, lists):
+        """
+        :type lists: List[ListNode]
+        :rtype: ListNode
+        """
+        dummy=now=ListNode(0)
+        min_index=0
+        while True:
+            min_now=float('inf')
+            isnull=True
+            for i in range(len(lists)):
+                if lists[i]:
+                    if lists[i].val<min_now:
+                        min_now=lists[i].val
+                        min_index=i
+                    isnull=False
+            if isnull==True:
+                break
+            lists[min_index]=lists[min_index].next
+            now.next=ListNode(min_now)
+            now=now.next
+        return dummy.next
+        
+        
