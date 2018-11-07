@@ -46,5 +46,45 @@ class Solution:
             now.next=ListNode(min_now)
             now=now.next
         return dummy.next
+
+# Priority queue and heap in python:  https://www.bogotobogo.com/python/python_PriorityQueue_heapq_Data_Structure.php
+
+    # Solution 3: Priority Queue Time: O(klogn)(insert to the priority queue is logn time)    
+    def mergeKLists(self, lists):
+        """
+        :type lists: List[ListNode]
+        :rtype: ListNode
+        """
+        from Queue import PriorityQueue
+        q=PriorityQueue()
+        dummy=now=ListNode(0)
+        for l in lists:
+            if l:
+                q.put((l.val,l))
+        while not q.empty():
+            val,l=q.get()
+            now.next=ListNode(val)
+            now=now.next
+            l=l.next
+            if l:
+                q.put((l.val,l))
+        return dummy.next        
         
-        
+       # Solution 4: Alternatively, using heap, Time: O(klogn)(insert to heap is logn time) 
+       def mergeKLists(self, lists):
+        """
+        :type lists: List[ListNode]
+        :rtype: ListNode
+        """
+        from heapq import heapify, heappop, heappush
+        dummy=now=ListNode(0)
+        h=[(l.val, l) for l in lists if l]
+        heapify(h)
+        while h:
+            val,l=heappop(h)
+            now.next=ListNode(val)
+            now=now.next
+            l=l.next
+            if l:
+                heappush(h,(l.val,l))
+        return dummy.next
