@@ -1,0 +1,46 @@
+class Solution(object):
+    def isValidSudoku(self, board):
+        """
+        :type board: List[List[str]]
+        :rtype: bool
+        """
+        # check rows
+        for i in range(9):
+            lookup={}
+            for j in range(9):
+                if board[i][j] in ('1','2','3','4','5','6','7','8','9'):
+                    if board[i][j] not in lookup:
+                        lookup[board[i][j]]=1
+                    else:
+                        return False
+
+        # check columns
+        for j in range(9):
+            lookup={}
+            for i in range(9):
+                if board[i][j] in ('1','2','3','4','5','6','7','8','9'):
+                    if board[i][j] not in lookup:
+                        lookup[board[i][j]]=1
+                    else:
+                        return False
+            
+        # check 3x3 sub-boxes
+        for xi in [0,3,6]:
+            for xj in [0,3,6]:
+                if not self.isVaildbox(board,xi,xj):
+                    return False
+                
+        return True  
+        
+    # function to check if a 3x3 sub-box starting at [xi,xj] from the left-top is valid
+    def isVaildbox(self,board,xi,xj):
+        lookup={}
+        for i in range(xi,xi+3):
+            for j in range(xj,xj+3):
+                if board[i][j] in ('1','2','3','4','5','6','7','8','9'):
+                    if board[i][j] not in lookup:
+                        lookup[board[i][j]]=1
+                    else:
+                        return False
+        return True
+        
