@@ -1,0 +1,42 @@
+Time: O(n), Space: O(1)
+
+class Solution(object):
+    def nextPermutation(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: void Do not return anything, modify nums in-place instead.
+        """
+        # Intuition: if the nums is monotonically decreasing, there is no next permutation exists
+        # else if exsits, want the increased amount as small as possible, i.e., change the digit from the position as right as possible 
+        
+        # Flow:
+        # 1. Starting from the right of the nums, check if the current location is the increasing point, i.e., nums[i]>nums[i-1]
+        # 2. Once the first increasing location i is found, check the remaining list nums[i:n-1], find the closest larger number(staring from the right)           #    nums[j] 
+        # 3. Swap nums[i-1] and nums[j]
+        # 4. Sort the remining list nums[i:], since nums[i:] is monotanically decreasing, sorting is equivalent to just reversing it
+        
+        
+        n=len(nums)
+        if n>1:
+            flag=False   # indicating if increasing position exists
+            for i in range(n-1,0,-1):
+                if nums[i]>nums[i-1]:
+                    flag=True
+                    for j in range(n-1,i-1,-1):
+                        if nums[j]>nums[i-1]:
+                            temp=nums[i-1]
+                            nums[i-1]=nums[j]
+                            nums[j]=temp
+                            break
+                    break
+            if flag:
+                self.reverse(nums,i,n-1)
+            else:
+                self.reverse(nums,0,n-1)
+                
+    def reverse(self,nums,l,r):
+        while l<r:
+            nums[l],nums[r]=nums[r],nums[l]
+            l+=1
+            r-=1
+                        
