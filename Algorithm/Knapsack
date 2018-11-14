@@ -1,0 +1,60 @@
+# Knapsack problem
+
+# Given weights and values of n items, put these items in a knapsack of capacity W to 
+# get the maximum total value in the knapsack.
+
+
+# Solution 1: Recursively
+
+# Starting from the right-most object, each step, we can choose to either:
+
+# 1) incude the item in our optimal subset
+# 2) not included in the optimal set
+
+# Compare the value from 1) and 2), take the larger one as our final output
+
+# Time: O(2^n); Space: O(1)
+
+def knapsack(values,weights,W,n):
+    if n==0 or W==0:
+        return 0
+    if weights[n-1]>W:
+        return knapsack(values,weights,W,n-1)
+    else:
+        return max(knapsack(values,weights,W,n-1),values[n-1]+knapsack(values,weights,W-weights[n-1],n-1))
+    
+values = [60, 100, 120] 
+weights = [10, 20, 30] 
+W = 50
+n = len(values) 
+
+print(knapsack(values,weights,W,n))
+
+
+
+
+# Solution 2: DP
+
+# The recursive method computes the same subproblems again and again.
+
+# D[i][w]: the maximum total of values we can obtain from obejcts 1,...i under constrain that total weight <=w
+
+def knapsack2(values,weights,W,n):
+    D=[[0 for w in range(W+1)] for i in range(n+1)]
+    for i in range(n+1):
+        for w in range(W+1):
+            if i==0 or W==0:
+                D[i][w]=0
+            if w>=weights[i-1]:
+                D[i][w]=max(D[i-1][w],values[i-1]+D[i-1][w-weights[i-1]])
+            else:
+                D[i][w]=D[i-1][w]
+    return D[n][W]
+                
+values = [60, 100, 120] 
+weights = [10, 20, 30] 
+W = 50
+n = len(values) 
+
+print(knapsack2(values,weights,W,n))                
+
