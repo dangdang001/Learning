@@ -2,12 +2,26 @@
 
 # https://leetcode.com/problems/rotate-image/discuss/18872/A-common-method-to-rotate-the-image
 class Solution:
+        
+    # clockwise 90 degree
     def rotate(self, matrix):
         """
         :type matrix: List[List[int]]
         :rtype: void Do not return anything, modify matrix in-place instead.
         """
         matrix.reverse()
+        for i in range(len(matrix)):
+            for j in range(i+1,len(matrix[0])):
+                matrix[i][j],matrix[j][i]=matrix[j][i],matrix[i][j]
+                
+    # anti-clockwise 90 degree
+    def rotate(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: void Do not return anything, modify matrix in-place instead.
+        """
+        for row in matrix:
+            row.reverse()
         for i in range(len(matrix)):
             for j in range(i+1,len(matrix[0])):
                 matrix[i][j],matrix[j][i]=matrix[j][i],matrix[i][j]                
