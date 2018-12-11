@@ -33,4 +33,23 @@ class Solution:
             result[j]=result[j]*prod_post
             prod_post=prod_post*nums[j]
         return result
-            
+
+# Solution 3: Time: O(n), Space: O(n)
+    def productExceptSelf(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        p=1
+        pre=[]
+        for num in nums:
+            pre.append(p)
+            p=p*num
+        q=1
+        post=[]
+        nums.reverse()
+        for num in nums:
+            post.append(q)
+            q=q*num
+        post.reverse()
+        return [a*b for a,b in zip(pre,post)]
